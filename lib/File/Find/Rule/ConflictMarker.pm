@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use parent qw/File::Find::Rule/;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $CONFLICT_MARKER_BASE    = '<' x 7;
 my $CONFLICT_MARKER_DEVIDER = '=' x 7;
@@ -79,7 +79,7 @@ File::Find::Rule::ConflictMarker searches for the conflict markers C<E<lt>E<lt>E
 
 =begin html
 
-<a href="https://github.com/bayashi/File-Find-Rule-ConflictMarker/blob/master/README.pod"><img src="https://img.shields.io/badge/Version-0.01-green?style=flat"></a> <a href="https://github.com/bayashi/File-Find-Rule-ConflictMarker/blob/master/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Artistic%202.0-GREEN.png"></a> <a href="https://github.com/bayashi/File-Find-Rule-ConflictMarker/actions"><img src="https://github.com/bayashi/File-Find-Rule-ConflictMarker/workflows/master/badge.svg"/></a> <a href="https://coveralls.io/r/bayashi/File-Find-Rule-ConflictMarker"><img src="https://coveralls.io/repos/bayashi/File-Find-Rule-ConflictMarker/badge.png?branch=master"/></a>
+<a href="https://github.com/bayashi/File-Find-Rule-ConflictMarker/blob/master/README.pod"><img src="https://img.shields.io/badge/Version-0.02-green?style=flat"></a> <a href="https://github.com/bayashi/File-Find-Rule-ConflictMarker/blob/master/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Artistic%202.0-GREEN.png"></a> <a href="https://github.com/bayashi/File-Find-Rule-ConflictMarker/actions"><img src="https://github.com/bayashi/File-Find-Rule-ConflictMarker/workflows/master/badge.svg?_t=1583101213"/></a> <a href="https://coveralls.io/r/bayashi/File-Find-Rule-ConflictMarker"><img src="https://coveralls.io/repos/bayashi/File-Find-Rule-ConflictMarker/badge.png?_t=1583101213&branch=master"/></a>
 
 =end html
 
