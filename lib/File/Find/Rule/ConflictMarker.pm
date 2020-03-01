@@ -52,6 +52,23 @@ File::Find::Rule::ConflictMarker - Conflict markers finder
 
     my @files = File::Find::Rule->conflict_marker->relative->in($dir);
 
+=head2 FOR TEST EXAMPLE
+
+It might be helpful as xt/no_conflict.t
+
+    use Test::More;
+
+    eval "use File::Find::Rule::ConflictMarker;";
+
+    plan skip_all => "skip the no conflict test because $@" if $@;
+
+    my @files = File::Find::Rule->name('*.pm', '*.t')->conflict_marker->in('lib', 't', 'xt');
+
+    ok( scalar(@files) == 0 )
+        or die join("\t", map { "'$_' has conflict markers." } @files);
+
+    done_testing;
+
 
 =head1 DESCRIPTION
 
