@@ -55,7 +55,7 @@ File::Find::Rule::ConflictMarker - Conflict markers finder
 
 =head1 DESCRIPTION
 
-File::Find::Rule::ConflictMarker searches for the conflict markers C<E<lt>E<lt>E<lt>E<lt>E<lt>E<lt>E<lt>>, C<E<gt>E<gt>E<gt>E<gt>E<gt>E<gt>E<gt>>, C<|||||||> in files.
+File::Find::Rule::ConflictMarker searches for the conflict markers C<E<lt>E<lt>E<lt>E<lt>E<lt>E<lt>E<lt>>, C<E<gt>E<gt>E<gt>E<gt>E<gt>E<gt>E<gt>>, C<E<verbar>E<verbar>E<verbar>E<verbar>E<verbar>E<verbar>E<verbar>> in files.
 
 
 =head1 REPOSITORY
