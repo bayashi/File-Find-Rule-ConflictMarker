@@ -3,10 +3,12 @@
 requires 'perl', '5.008005';
 requires 'strict';
 requires 'warnings';
-requires 'Carp';
+requires 'parent';
+requires 'File::Find::Rule';
 
 on 'test' => sub {
     requires 'Test::More', '0.88';
+    requires 'File::Object';
 };
 
 on 'configure' => sub {
