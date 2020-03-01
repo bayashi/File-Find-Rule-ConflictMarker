@@ -1,15 +1,38 @@
 package File::Find::Rule::ConflictMarker;
 use strict;
 use warnings;
-use Carp qw/croak/;
+use parent qw/File::Find::Rule/;
 
 our $VERSION = '0.01';
 
-sub new {
-    my $class = shift;
-    my $args  = shift || +{};
+my $CONFLICT_MARKER_BASE    = '<' x 7;
+my $CONFLICT_MARKER_DEVIDER = '=' x 7;
+my $CONFLICT_MARKER_TARGET  = '>' x 7;
+my $CONFLICT_MARKER_SOURCE  = '|' x 7;
 
-    bless $args, $class;
+my $CONFLICT_MARKER_COND = join '|', map { "\Q$_\E" } (
+    $CONFLICT_MARKER_BASE,
+    $CONFLICT_MARKER_DEVIDER,
+    $CONFLICT_MARKER_TARGET,
+    $CONFLICT_MARKER_SOURCE,
+);
+
+our $CONFLICT_MARKER_REGEX = qr/($CONFLICT_MARKER_COND)/;
+
+sub File::Find::Rule::conflict_marker {
+    my ($file_find_rule) = @_;
+
+    my $self = $file_find_rule->_force_object;
+
+    return $self->file->exec(sub{
+        my ($file) = @_;
+
+        open my $fh, '<', $file or die "Could not open $file, $!";
+        my $content = do { local $/; <$fh>; };
+        close $fh;
+
+        return $content =~ m!$CONFLICT_MARKER_REGEX!;
+    });
 }
 
 1;
@@ -20,17 +43,19 @@ __END__
 
 =head1 NAME
 
-File::Find::Rule::ConflictMarker - one line description
+File::Find::Rule::ConflictMarker - Conflict markers finder
 
 
 =head1 SYNOPSIS
 
     use File::Find::Rule::ConflictMarker;
 
+    my @files = File::Find::Rule->conflict_marker->relative->in($dir);
+
 
 =head1 DESCRIPTION
 
-File::Find::Rule::ConflictMarker is
+File::Find::Rule::ConflictMarker searches for the conflict markers C<E<lt>E<lt>E<lt>E<lt>E<lt>E<lt>E<lt>>, C<E<gt>E<gt>E<gt>E<gt>E<gt>E<gt>E<gt>>, C<|||||||> in files.
 
 
 =head1 REPOSITORY
@@ -53,7 +78,7 @@ Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
-L<Other::Module>
+L<File::Find::Rule>
 
 
 =head1 LICENSE
